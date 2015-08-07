@@ -8,7 +8,7 @@ The main Aerospike class
 
 ```php
 
-class Aerospike
+final class Aerospike
 {
     // The key policy can be determined by setting OPT_POLICY_KEY to one of
     const POLICY_KEY_DIGEST; // hashes (ns,set,key) data into a unique record ID (default)
