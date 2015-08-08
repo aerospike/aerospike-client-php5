@@ -84,7 +84,7 @@ I think a sample of 20 records is enough
 <?php
 
 $result = array();
-$status = $db->scan("test", "users", function ($record) use (&$results) {
+$status = $db->scan("test", "users", function ($record) use (&$result) {
     $result[] = $record['bins'];
 });
 if ($status !== Aerospike::OK) {
