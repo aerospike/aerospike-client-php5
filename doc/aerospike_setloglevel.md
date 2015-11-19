@@ -13,7 +13,7 @@ public Aerospike::setLogLevel ( int $log_level )
 
 ## Parameters
 
-**log_level** one of *Aerospike::LOG_LEVEL_\** values
+**log_level** one of `Aerospike::LOG_LEVEL_*` values
 
 ## Examples
 
