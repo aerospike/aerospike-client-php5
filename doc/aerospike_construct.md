@@ -38,7 +38,7 @@ cluster and manage its connections to them.
 - **Aerospike::OPT_CONNECT_TIMEOUT**
 - **Aerospike::OPT_READ_TIMEOUT**
 - **Aerospike::OPT_WRITE_TIMEOUT**
-- **[Aerospike::OPT_SERIALIZER](aerospike.md)**.
+- **[Aerospike::OPT_SERIALIZER](aerospike.md)**
 - **[Aerospike::OPT_POLICY_KEY](http://www.aerospike.com/apidocs/c/db/d65/group__client__policies.html#gaa9c8a79b2ab9d3812876c3ec5d1d50ec)**
 - **[Aerospike::OPT_POLICY_EXISTS](http://www.aerospike.com/apidocs/c/db/d65/group__client__policies.html#ga50b94613bcf416c9c2691c9831b89238)**
 - **[Aerospike::OPT_POLICY_RETRY](http://www.aerospike.com/apidocs/c/db/d65/group__client__policies.html#gaa9730980a8b0eda8ab936a48009a6718)**
