@@ -189,7 +189,7 @@ final class Aerospike
     // Security role privileges
     const PRIV_READ; // user can read data only
     const PRIV_WRITE; // user can read and write data
-    const PRIV_READ_WRITE_UDF; // can read and write data through User-Defind Functions
+    const PRIV_READ_WRITE_UDF; // can read and write data through User-Defined Functions
     const PRIV_USER_ADMIN; // user can edit/remove other users
     const PRIV_SYS_ADMIN; // can perform sysadmin functions that do not involve user admin
     const PRIV_DATA_ADMIN; // can perform data admin functions that do not involve user admin
@@ -220,6 +220,7 @@ final class Aerospike
     public int append ( array $key, string $bin, string $value [, array $options ] )
     public int prepend ( array $key, string $bin, string $value [, array $options ] )
     public int operate ( array $key, array $operations [, array &$returned ] )
+    public int getMetadata ( array $key, array &$metadata [, array $options ] )
 
     // unsupported type handler methods
     public static setSerializer ( callback $serialize_cb )
@@ -250,10 +251,11 @@ final class Aerospike
     // admin methods
     public int addIndex ( string $ns, string $set, string $bin, string $name, int $index_type, int $data_type [, array $options ] )
     public int dropIndex ( string $ns, string $name [, array $options ] )
+    public int createIndex ( string $ns, string $set, string $bin, int $type, string $name ) // deprecated
 
     // info methods
-    public int info ( string $request, string &$response [, array $host [, array options ] ] )
-    public array infoMany ( string $request [, array $config [, array options ]] )
+    public int info ( string $request, string &$response [, array $host [, array $options ] ] )
+    public array infoMany ( string $request [, array $config [, array $options ]] )
     public array getNodes ( void )
 
     // security methods
