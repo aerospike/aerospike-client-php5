@@ -89,9 +89,8 @@ parse_args () {
     done
 }
 
-if [ ! -z "$(which php-config)" ]; then
-    PHP_CONFIG=`which php-config`
-else
+PHP_CONFIG="$(command -v php-config 2> /dev/null)"
+if [ ! -z "${PHP_CONFIG}" ]; then
     PHP_CONFIG="php-config"
 fi
 
@@ -99,7 +98,13 @@ if [ -f Makefile ]; then
   make clean
 fi
 parse_args $@
-phpize
+
+PHPIZE_BIN="$(command -v phpize 2> /dev/null || command -v phpize5 2> /dev/null)"
+if [ ! -z "${PHPIZE_BIN}" ]; then
+    PHPIZE_BIN="phpize"
+fi
+
+$PHPIZE_BIN
 ./configure --enable-aerospike --with-php-config=$PHP_CONFIG "CFLAGS=-g -O3"
 
 OS=`uname`
