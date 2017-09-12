@@ -36,12 +36,25 @@ fi
 LOGLEVEL="PHP_EXT_AS_LOG_LEVEL_OFF"
 
 parse_args () {
-    while [[ $# > 1 ]]
+    while [[ $# > 0 ]]
     do
         key="$1"
         shift
-
         case $key in
+            --phpize=*)
+                PHPIZE="${key#*=}"
+                ;;
+            --phpize)
+                PHPIZE="$1"
+                shift
+                ;;
+            --php-config=*)
+                PHP_CONFIG="${key#*=}"
+                ;;
+            --php-config)
+                PHP_CONFIG="$1"
+                shift
+                ;;
             -l|--loglevel)
                 case "$1" in
                     TRACE|trace)
@@ -95,12 +108,14 @@ else
     PHP_CONFIG="php-config"
 fi
 
+PHPIZE="phpize"
+
 if [ -f Makefile ]; then
   make clean
 fi
 parse_args $@
-phpize
-./configure --enable-aerospike --with-php-config=$PHP_CONFIG "CFLAGS=-g -O3"
+$PHPIZE
+./configure --enable-aerospike --with-php-config="$PHP_CONFIG" "CFLAGS=-g -O3"
 
 OS=`uname`
 
@@ -207,13 +222,13 @@ if [ x"$DOWNLOAD_PHP_UNIT" = x1 ]; then
     if (("$intPhpVer" >= "7")); then
         echo 'Installing PHPUnit 5.1'
         sudo rm -f phpunit.phar
-        sudo wget https://phar.phpunit.de/phpunit.phar
+        sudo -E wget https://phar.phpunit.de/phpunit.phar
         sudo chmod +x phpunit.phar
         sudo mv phpunit.phar /usr/local/bin/phpunit
     else
         echo 'Installing PHPUnit 4.8'
         sudo rm -f phpunit-old.phar
-        sudo wget https://phar.phpunit.de/phpunit-old.phar
+        sudo -E wget https://phar.phpunit.de/phpunit-old.phar
         sudo chmod +x phpunit-old.phar
         sudo mv phpunit-old.phar /usr/local/bin/phpunit
     fi
